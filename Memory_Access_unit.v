@@ -1,19 +1,18 @@
-module flag_reg (
-input clk, 
-  input isCmp,
-  input cmp_g,
-  input cmp_e,
-  output reg ocmp_g,
-  output reg ocmp_e 
-
+module memoryaccessunit (
+  input  wire [31:0] op2,
+  input  wire [31:0] aluResult,
+  input  wire        isLd, isSt,
+  input  wire        clk,
+  output wire [31:0] ldresult
 );
-always @(posedge clk)
-begin
-if(isCmp)
-begin
-  ocmp_g<=cmp_g;
-  ocmp_e<=cmp_e;
-end
-end
+  reg [31:0] datamemory [0:1023];
+  reg [31:0] mdr;
 
+  // Make load operations combinational instead of sequential
+  assign ldresult = isLd ? datamemory[aluResult] : 32'd0;
+
+  // Store operations remain sequential (on clock edge)
+  always @(posedge clk) begin
+    if (isSt) datamemory[aluResult] <= op2;
+  end 
 endmodule
