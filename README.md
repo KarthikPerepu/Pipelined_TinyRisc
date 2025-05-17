@@ -1,12 +1,11 @@
 # 5-Stage Pipelined RISC Processor
 
-![Processor Pipeline](docs/pipeline_diagram.png)
 
 This repository contains a fully functional **5-stage pipelined RISC processor** implemented in **Verilog HDL**. The processor features a classic RISC pipeline with Instruction Fetch (IF), Instruction Decode (ID), Execute (EX), Memory Access (MA), and Register Write-back (WB) stages. The design prioritizes modularity, readability, and extensibility.
 
 ---
 
-## 🔧 Architecture Features
+##  Architecture Features
 
 - **5-Stage Pipeline**  
   Implements the classic RISC pipeline stages for improved instruction throughput.
@@ -28,7 +27,7 @@ This repository contains a fully functional **5-stage pipelined RISC processor**
 
 ---
 
-## 🚀 Pipeline Stages
+##  Pipeline Stages
 
 1. **Instruction Fetch (IF)**  
    - PC management and instruction memory access  
@@ -56,7 +55,7 @@ This repository contains a fully functional **5-stage pipelined RISC processor**
 
 ---
 
-## 🧾 Instruction Set Architecture (ISA)
+##  Instruction Set Architecture (ISA)
 
 - **Data Transfer**: `LD`, `ST`  
 - **Arithmetic**: `ADD`, `SUB`, `MUL`, `DIV`, `MOD`  
@@ -68,7 +67,7 @@ This repository contains a fully functional **5-stage pipelined RISC processor**
 
 ---
 
-## 🧩 Key Modules
+##  Key Modules
 
 ### Core Pipeline Components
 - `instructionfetch.v`  
@@ -97,7 +96,7 @@ This repository contains a fully functional **5-stage pipelined RISC processor**
 
 ---
 
-## 🛠 Getting Started
+##  Getting Started
 
 ### Prerequisites
 
