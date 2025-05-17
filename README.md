@@ -61,7 +61,7 @@ This repository contains a fully functional **5-stage pipelined RISC processor**
 - **Arithmetic**: `ADD`, `SUB`, `MUL`, `DIV`, `MOD`  
 - **Logical**: `AND`, `OR`, `NOT`  
 - **Shifts**: `LSH`, `RSH`, `ARSH`  
-- **Control Flow**: `BEQ`, `BGT`, `BR`  
+- **Control Flow**: `BEQ`, `BGT`, `B`  
 - **Function Calls**: `CALL`, `RET`  
 - **Special**: `CMP`, `MOV`  
 
@@ -86,7 +86,7 @@ This repository contains a fully functional **5-stage pipelined RISC processor**
 
 ### ALU Submodules
 - `Adder.v`, `Multiplier.v`, `Divider.v`, `Logical_unit.v`, etc.  
-- `unified_shift_register.v` (supports LSH/RSH/ARSH)  
+- `unified_shift_register.v` (supports LSR/ASR/LSL)  
 
 ### Auxiliary Components
 - `mux2x1.v`, `mux4x1.v` (parameterized multiplexers)  
