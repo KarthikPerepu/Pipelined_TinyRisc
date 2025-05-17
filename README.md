@@ -1,89 +1,105 @@
-5-Stage Pipelined RISC Processor
+# 5-Stage Pipelined RISC Processor
 
-Overview
-This repository contains a fully functional 5-stage pipelined RISC processor implemented in Verilog HDL. The processor features a classic RISC pipeline with Instruction Fetch (IF), Instruction Decode (ID), Execute (EX), Memory Access (MA), and Register Write-back (WB) stages. The design prioritizes modularity, readability, and extensibility.
-Architecture Features
+![Processor Pipeline](docs/pipeline_diagram.png)
 
-5-Stage Pipeline: Implements the classic RISC pipeline stages for improved throughput
-Parametrized Design: Key components like multiplexers can be easily scaled
-Comprehensive ALU: Supports arithmetic, logical, shift, and comparison operations
-Branch Support: Hardware for conditional and unconditional branch operations
-Memory Access: Both load and store operations with separate instruction and data memory
-Immediate Generation: Flexible immediate value handling with multiple formats
+This repository contains a fully functional **5-stage pipelined RISC processor** implemented in **Verilog HDL**. The processor features a classic RISC pipeline with Instruction Fetch (IF), Instruction Decode (ID), Execute (EX), Memory Access (MA), and Register Write-back (WB) stages. The design prioritizes modularity, readability, and extensibility.
 
-Pipeline Stages
-1. Instruction Fetch (IF)
+---
 
-PC management and instruction memory access
-Branch target selection through multiplexing
-Instruction fetching (32-bit instructions)
+## 🔧 Architecture Features
 
-2. Instruction Decode (ID)
+- **5-Stage Pipeline**  
+  Implements the classic RISC pipeline stages for improved instruction throughput.
 
-Control signal generation based on opcode
-Register file access
-Immediate value generation
-Branch target calculation
+- **Parametrized Design**  
+  Key components (e.g., multiplexers) can be easily scaled via parameters.
 
-3. Execute (EX)
+- **Comprehensive ALU**  
+  Supports arithmetic, logical, shift, and comparison operations.
 
-ALU operations (arithmetic, logical, shift)
-Branch condition evaluation
-Flag register updates for comparison operations
+- **Branch Support**  
+  Hardware logic for both conditional and unconditional branch operations.
 
-4. Memory Access (MA)
+- **Memory Access**  
+  Separate instruction and data memories; supports load and store operations.
 
-Data memory read/write operations
-Address calculation using ALU results
+- **Immediate Generation**  
+  Flexible handling of multiple immediate‐format encodings.
 
-5. Write-back (WB)
+---
 
-Result selection from multiple sources (ALU, memory, etc.)
-Register file updates
+## 🚀 Pipeline Stages
 
-Instruction Set Architecture
-The processor supports a rich instruction set including:
+1. **Instruction Fetch (IF)**  
+   - PC management and instruction memory access  
+   - Branch target selection via mux  
+   - 32-bit instruction fetch  
 
-Data transfer: Load (LD), Store (ST)
-Arithmetic: Add, Subtract, Multiply, Divide, Modulo
-Logical: AND, OR, NOT
-Shifts: Logical left/right shift, Arithmetic shift right
-Control flow: Branch equal, Branch greater than, Unconditional branch
-Function calls: Call, Return
-Special: Compare, Move
+2. **Instruction Decode (ID)**  
+   - Control‐signal generation based on opcode  
+   - Register‐file read ports  
+   - Immediate‐value generation  
+   - Branch‐target address calculation  
 
-Key Modules
-Core Pipeline Components
+3. **Execute (EX)**  
+   - ALU operations: arithmetic, logical, shifts  
+   - Branch‐condition evaluation  
+   - Flag‐register updates for comparisons  
 
-instructionfetch: Manages the PC and retrieves instructions
-control_unit: Decodes instructions and generates control signals
-OperandFetchUnit: Selects the appropriate register addresses
-Register_file: Provides register read/write functionality
-ALU: Performs all arithmetic and logical operations
-memoryaccessunit: Handles data memory access
-regwriteback: Manages the write-back multiplexing and control
+4. **Memory Access (MA)**  
+   - Data‐memory read/write  
+   - Address calculation from ALU result  
 
-Pipeline Registers
+5. **Write-back (WB)**  
+   - Select result from ALU, data memory, or other sources  
+   - Register‐file write port  
 
-pipo_IF_ID: Between Instruction Fetch and Decode stages
-pipo_ID_EX: Between Instruction Decode and Execute stages
-EX_MA: Between Execute and Memory Access stages
-MA_RW: Between Memory Access and Write-back stages
+---
 
-ALU Components
+## 🧾 Instruction Set Architecture (ISA)
 
-Various computational modules including Adder, Mul, Divider, Logical_unit, etc.
-Shifter unit (unified_shift_register) supporting multiple shift types
+- **Data Transfer**: `LD`, `ST`  
+- **Arithmetic**: `ADD`, `SUB`, `MUL`, `DIV`, `MOD`  
+- **Logical**: `AND`, `OR`, `NOT`  
+- **Shifts**: `LSH`, `RSH`, `ARSH`  
+- **Control Flow**: `BEQ`, `BGT`, `BR`  
+- **Function Calls**: `CALL`, `RET`  
+- **Special**: `CMP`, `MOV`  
 
-Auxiliary Components
+---
 
-mux2x1 and mux4x1: Parameterized multiplexers
-imm_gen: Immediate value generator
-branchunit: Branch decision logic
-flag_reg: Stores comparison flags
+## 🧩 Key Modules
 
-Getting Started
-Prerequisites
+### Core Pipeline Components
+- `instructionfetch.v`  
+- `control_unit.v`  
+- `OperandFetchUnit.v`  
+- `Register_file.v`  
+- `ALU.v`  
+- `memoryaccessunit.v`  
+- `regwriteback.v`  
 
-Verilog HDL compatible simulator (ModelSim, Icarus Verilog, etc.)
-Synthesis tools (if targeting hardware implementation)
+### Pipeline Registers
+- `pipo_IF_ID.v`  
+- `pipo_ID_EX.v`  
+- `EX_MA.v`  
+- `MA_RW.v`  
+
+### ALU Submodules
+- `Adder.v`, `Multiplier.v`, `Divider.v`, `Logical_unit.v`, etc.  
+- `unified_shift_register.v` (supports LSH/RSH/ARSH)  
+
+### Auxiliary Components
+- `mux2x1.v`, `mux4x1.v` (parameterized multiplexers)  
+- `imm_gen.v` (immediate‐value generator)  
+- `branchunit.v` (branch‐decision logic)  
+- `flag_reg.v` (comparison flags storage)  
+
+---
+
+## 🛠 Getting Started
+
+### Prerequisites
+
+- **Simulator**: Verilog HDL compatible simulator (ModelSim, Icarus Verilog, etc.)
+- **Synthesis Tools**: Xilinx Vivado, Intel Quartus, etc
